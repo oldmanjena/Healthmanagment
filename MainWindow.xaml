@@ -25,7 +25,7 @@
                     </MenuItem.Icon>
                     <MenuItem Header="Messwerte Blutdruck"/>
                     <MenuItem Header="Morgens"/>
-                    <MenuItem Header="Abends"/>
+                    <MenuItem Header="Testen" Click="Testen_Click" IsCheckable="True"/>
                 </MenuItem>
                 <MenuItem Header="_SUBMENU2" IsCheckable="true"/>
                 <MenuItem Header="_SUBMENU3" IsCheckable="true"/>

@@ -9,6 +9,7 @@ using Healthmanagment.Training;
 using System.Windows;
 using Healthmanagment.Auswertungen;
 using Healthmanagment.Gewicht;
+using Healthmanagment.Versuche;
 
 namespace Healthmanagment;
 
@@ -119,6 +120,12 @@ public partial class MainWindow : Window
     {
         KoerperdatenView koerperdaten = new KoerperdatenView();
         koerperdaten.Show();
+    }
+
+    private void Testen_Click(object sender, RoutedEventArgs e)
+    {
+        VersucheControl test = new VersucheControl();
+        test.Show();
     }
 }
 
