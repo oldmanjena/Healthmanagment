@@ -1,0 +1,29 @@
+<Application x:Class="Healthmanagment.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Healthmanagment"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Dein GlobalStyle -->
+                <ResourceDictionary Source="Design/GlobalStyles.xaml"/>
+
+              
+
+                
+                <md:BundledTheme BaseTheme="Light" 
+                                 PrimaryColor="Blue" 
+                                 SecondaryColor="Lime" />
+
+                <!-- Optional: Control-spezifische Styles -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.NumericUpDown.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

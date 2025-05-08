@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window x:Class="Healthmanagment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:local="clr-namespace:Healthmanagment"
+        mc:Ignorable="d"
+        Title="Start" Height="450" Width="800"
+        Style="{StaticResource {x:Type Window}}">
+    <!-- Weitere XAML-Inhalte -->
+
+
+
+
+<StackPanel Margin="10">
+        <Menu Width="757" Margin="10"
+          HorizontalAlignment="Left" Background="White"
+          BorderBrush="Blue" BorderThickness="2">
+
+            <MenuItem Header="Administration">
+                <MenuItem Header="Blutdruck">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/icons/gesund.png" Width="16" Height="16"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="Messwerte Blutdruck"/>
+                    <MenuItem Header="Morgens"/>
+                    <MenuItem Header="Abends"/>
+                </MenuItem>
+                <MenuItem Header="_SUBMENU2" IsCheckable="true"/>
+                <MenuItem Header="_SUBMENU3" IsCheckable="true"/>
+            </MenuItem>
+            
+            
+            <MenuItem Header="Auswertungen">
+                <MenuItem Header="Blutdruck"/>
+                <MenuItem Header="Pr?fen" Click="Pruef_Click" IsCheckable="True"/>
+                <Separator/>
+                <MenuItem Header="Wochen Muskeln" Click="Woche_Click" IsCheckable="True"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+
+            <MenuItem Header="Tabellen">
+                <MenuItem Header="Blutdruck" Click="Auswertung_Click" IsCheckable="True"/>
+                <MenuItem Header="Essen" Click="EinEssen_Click" IsCheckable="True"/>
+                <Separator/>
+                <MenuItem Header="Verschiedenes" Click="Verschieden_Click" IsCheckable="True"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+
+            <MenuItem Header="Eintragen">
+                <MenuItem Header="Blutdruck Werte" Click="Blutdruck_Click" IsCheckable="True"/>
+                <MenuItem x:Name="Cardio_Training" Header="Cardio Eintragen" Click="TraiEin_Click" IsCheckable="True"/>
+                <Separator/>
+                <MenuItem x:Name="MuskelTrain" Header="Muskel Training" Click="Muskeln_Click" IsCheckable="True"/>
+                <MenuItem x:Name="Schmerz" Header="Schmerzen" Click="Schmerz_Click" IsCheckable="True"/>
+                <MenuItem x:Name="Gewicht" Header="K?rperhewicht" Click="Koerpergewicht_Click" IsCheckable="True"/>
+            </MenuItem>
+
+
+            <MenuItem Header="Suchen">
+                <MenuItem Header="Blutdruck Suchen" Click="SuBlut_Click" IsCheckable="True"/>
+                <MenuItem Header="Redo"/>
+                <Separator/>
+                <MenuItem Header="Cut"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+
+            <MenuItem Header="Planung">
+                <MenuItem Header="Training" Click="Training_Click" IsCheckable="True"/>
+                <MenuItem Header="Pan Update" Click="PlanUpdate_Click" IsCheckable="True"/>
+                <Separator/>
+                <MenuItem Header="Ziele" Click="ZielEin_Click" IsCheckable="True"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+        </Menu>
+        
+        
+
+    </StackPanel>
+
+</Window>
+

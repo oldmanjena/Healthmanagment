@@ -1,0 +1,120 @@
+<Window x:Class="Healthmanagment.Gewicht.KoerperdatenView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Healthmanagment.Gewicht"
+        xmlns:conv="clr-namespace:Healthmanagment.Converter"
+        xmlns:vm="clr-namespace:Healthmanagment.ViewModel" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"       
+        
+        Title="K?rperdaten" Height="800" Width="500"
+        Style="{StaticResource {x:Type Window}}">
+
+    <Window.Resources>
+        <conv:MaskedTextToDecimalConverter x:Key="DecimalConverter" />
+        <conv:DrawingBrushToMediaBrushConverter x:Key="DrawingBrushToMediaBrushConverter" />
+      
+    </Window.Resources>
+
+    <xctk:Wizard x:Name="KoerperdatenWizard" 
+             FinishButtonClosesWindow="False">     
+
+
+        <!-- Seite 1: Basiswerte -->
+        <xctk:WizardPage Title="Basiswerte">
+            <StackPanel>
+                <TextBlock Text="Gewicht (kg)" />
+                <xctk:DoubleUpDown Value="{Binding Gewicht}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="BMI" />
+                <xctk:DoubleUpDown Value="{Binding BMI}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 2: Fettverteilung -->
+        <xctk:WizardPage Title="Fettverteilung">
+            <StackPanel>
+                <TextBlock Text="K?rperfett (%)" />
+                <xctk:DoubleUpDown Value="{Binding Koerperfett}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Fettmasse (kg)" />
+                <xctk:DoubleUpDown Value="{Binding Fettmasse}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Fettfreies K?rpergewicht" />
+                <xctk:DoubleUpDown Value="{Binding FettfreiesKoerpergewicht}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 3: Muskelmasse -->
+        <xctk:WizardPage Title="Muskelmasse">
+            <StackPanel>
+                <TextBlock Text="Muskelmasse" />
+                <xctk:DoubleUpDown Value="{Binding Muskelmasse}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Muskelfrequenz" />
+                <xctk:DoubleUpDown Value="{Binding Muskelfrequenz}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Skelettmuskulatur (%)" />
+                <xctk:DoubleUpDown Value="{Binding Skelettmuskulatur}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 4: K?rperstruktur -->
+        <xctk:WizardPage Title="K?rperstruktur">
+            <StackPanel>
+                <TextBlock Text="Knochenmasse" />
+                <xctk:DoubleUpDown Value="{Binding Knochenmasse}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Eiwei?menge" />
+                <xctk:DoubleUpDown Value="{Binding Eiweissmenge}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Proteine" />
+                <xctk:DoubleUpDown Value="{Binding Proteine}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 5: Wasserhaushalt -->
+        <xctk:WizardPage Title="Wasserhaushalt">
+            <StackPanel>
+                <TextBlock Text="Wassergehalt" />
+                <xctk:DoubleUpDown Value="{Binding Wassergehalt}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="K?rperwasser (%)" />
+                <xctk:DoubleUpDown Value="{Binding Koerperwasser}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 6: Fettverteilung Details -->
+        <xctk:WizardPage Title="Fettverteilung Details">
+            <StackPanel>
+                <TextBlock Text="Unterhautfettgewebe" />
+                <xctk:DoubleUpDown Value="{Binding Unterhautfettgewebe}" Width="120" Margin="0,5"/>
+
+                <TextBlock Text="Viszerales Fett" />
+                <xctk:DoubleUpDown Value="{Binding ViszeralesFett}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 7: Metabolismus -->
+        <xctk:WizardPage Title="Metabolismus">
+            <StackPanel>
+                <TextBlock Text="BMR" />
+                <xctk:DoubleUpDown Value="{Binding BMR}" Width="120" Margin="0,5"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+        <!-- Seite 8: Abschluss -->
+        <xctk:WizardPage Title="Fertigstellen">
+            <StackPanel>
+                <TextBlock Text="Alle Daten sind eingegeben. Klicke auf Speichern, um die Werte zu ?bernehmen." Margin="0,0,0,10"/>
+                <Button Content="Speichern" Command="{Binding SpeichernCommand}" Click="OnFinishButtonClicked" Width="150" Height="35" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </xctk:WizardPage>
+
+    </xctk:Wizard>
+
+
+</Window>
+
