@@ -41,10 +41,10 @@ namespace Healthmanagment.ViewModel
 
         private readonly Dictionary<string, List<string>> _bereichsDaten = new()
         {
-            ["Fuss"] = new List<string> { "ohne", "Spann", "linke Amputation", "Gro?er Zeh Amputation" },
+            ["Fuss"] = new List<string> { "ohne", "Spann", "linke Amputation", "Grosser Zeh Amputation" },
             ["Bein"] = new List<string> { "ohne", "Oberschenkel", "Knie", "Unterschenkel" },
-            ["Ruecken"] = new List<string> { "ohne", "Lendenwirbels?ule", "Brustwirbels?ule", "Halswirbels?ule" },
-            ["Bauch"] = new List<string> { "ohne", "gerade", "schr?g", "untere" },
+            ["Ruecken"] = new List<string> { "ohne", "Lendenwirbelsaeule", "Brustwirbels?ule", "Halswirbelsaeule" },
+            ["Bauch"] = new List<string> { "ohne", "gerade", "schraeg", "untere", "Kraempfe" },
             ["Knie"] = new List<string> { "ohne", "vorne", "seite", "hinten" },
             ["Bereiche"] = new List<string> { "ohne", "Fuss", "Bein", "Ruecken", "Bauch", "Knie" }
             // usw.
