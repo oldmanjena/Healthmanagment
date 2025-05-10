@@ -63,6 +63,25 @@ namespace Healthmanagment.Training
             }
         }
 
+        private void txtEffekt_Click(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var popup = new EffektPopup();
+                popup.Owner = this; // setzt den Owner auf das Hauptfenster
+
+                if (popup.ShowDialog() == true)
+                {
+                    txtEffekt.Text = popup.ErgebnisText;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler beim Öffnen des Popups: {ex.Message}");
+            }
+        }
+
+
 
 
 
@@ -105,7 +124,34 @@ namespace Healthmanagment.Training
             }
         }
 
-   
+     
+
+      
+
+        private void txtEffekt_LostFocus(object sender, RoutedEventArgs e)
+        {
+           // MessageBox.Show("Lost Focus Event wurde ausgelöst!");
+        }
+
+        private void TestPopupButton_Click(object sender, RoutedEventArgs e)
+        {
+            EffektPopup effektPopUp = new EffektPopup();
+            effektPopUp.Owner = this;
+            if (effektPopUp.ShowDialog() == true)
+            {
+                txtEffekt.Text = effektPopUp.ErgebnisText;
+            }
+        }
+
+        private void txtEffekt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            EffektPopup effektPopUp = new EffektPopup();
+            effektPopUp.Owner = this;
+            if (effektPopUp.ShowDialog() == true)
+            {
+                txtEffekt.Text = effektPopUp.ErgebnisText;
+            }
+        }
     }
 }
 

@@ -1,0 +1,13 @@
+﻿<Window x:Class="Healthmanagment.Training.EffektPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="TRIMP berechnen" Height="220" Width="300"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <StackPanel Margin="10">
+        <xctk:WatermarkTextBox x:Name="txtWert1" Watermark="Wert 1 (x 0.8)" Margin="5" />
+        <xctk:WatermarkTextBox x:Name="txtWert2" Watermark="Wert 2 (x 1.0)" Margin="5" />
+        <xctk:WatermarkTextBox x:Name="txtWert3" Watermark="Wert 3 (x 1.2)" Margin="5" />
+        <Button Content="Berechnen" Margin="5" Click="OK_Click"/>
+    </StackPanel>
+</Window>
