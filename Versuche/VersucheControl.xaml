@@ -3,19 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  
+        xmlns:ui="http://schemas.modernwpf.com/2019"        
         xmlns:local="clr-namespace:Healthmanagment.Versuche"
         mc:Ignorable="d"
-        Title="VersucheControl" Height="450" Width="800">
+        Title="VersucheControl" Height="450" Width="800"
+       Background="{DynamicResource ApplicationPageBackgroundThemeBrush}">
+
     <Grid>
-        <xctk:TimePicker x:Name="textBox" StartTime="10:00" Format="ShortTime"  HorizontalAlignment="Left" Margin="28,57,0,0" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <xctk:TimePicker x:Name="textBox"
+                 HorizontalAlignment="Left"
+                 Margin="28,57,0,0"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 Style="{StaticResource ModernTimePickerStyle}" />
+
+
         <TextBlock x:Name="textBlock" Margin="28,30,0,0" TextWrapping="Wrap" Text="Versuch Time" VerticalAlignment="Top"/>
-        <xctk:TimePicker Format="ShortDate" FormatString="dd.mm.JJJJ" Margin="28,109,634,230" RenderTransformOrigin="0.045,4.404" Height="30" />
+        <TextBlock x:Name="textBlock1" Margin="28,115,0,0" TextWrapping="Wrap" Text="ValueUpDown" VerticalAlignment="Top"/>
+        <xctk:ValueRangeTextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="28,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <xctk:DateTimeUpDown Format="Custom" FormatString="hh:mm tt" Value="13:30" Width="100" Margin="269,52,431,315" />
         <xctk:Calculator  Width="300" Margin="400,57,100,62"/>
-        <xctk:DecimalUpDown FormatString="C2"  AllowSpin="True"  CultureInfo="de-DE" Increment=".5" Value="10.00"   VerticalAlignment="Top" Width="120" Margin="18,215,662,0"/>
-        <xctk:MultiLineTextEditor x:Name="textBox1" HorizontalAlignment="Left" Margin="221,57,0,0"  VerticalAlignment="Top" Width="120"/>
-
-
-    </Grid>
+           
+        </Grid>
+   
 </Window>
 

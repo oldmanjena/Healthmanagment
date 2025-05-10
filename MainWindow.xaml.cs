@@ -11,6 +11,8 @@ using Healthmanagment.Auswertungen;
 using Healthmanagment.Gewicht;
 using Healthmanagment.Versuche;
 
+
+
 namespace Healthmanagment;
 
 /// <summary>
@@ -122,10 +124,10 @@ public partial class MainWindow : Window
         koerperdaten.Show();
     }
 
-    private void Testen_Click(object sender, RoutedEventArgs e)
+    private void Versuche_Click(object sender, RoutedEventArgs e)
     {
-        VersucheControl test = new VersucheControl();
-        test.Show();
+        VersucheControl versuche = new VersucheControl();
+        versuche.Show();
     }
 }
 

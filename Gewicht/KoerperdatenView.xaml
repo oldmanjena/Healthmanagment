@@ -36,13 +36,13 @@
         <!-- Seite 2: Fettverteilung -->
         <xctk:WizardPage Title="Fettverteilung">
             <StackPanel>
-                <TextBlock Text="Koerperfett (%)" />
+                <TextBlock Text="K?rperfett (%)" />
                 <xctk:DoubleUpDown Value="{Binding Koerperfett}" Width="120" Margin="0,5"/>
 
                 <TextBlock Text="Fettmasse (kg)" />
                 <xctk:DoubleUpDown Value="{Binding Fettmasse}" Width="120" Margin="0,5"/>
 
-                <TextBlock Text="Fettfreies Koerpergewicht" />
+                <TextBlock Text="Fettfreies K?rpergewicht" />
                 <xctk:DoubleUpDown Value="{Binding FettfreiesKoerpergewicht}" Width="120" Margin="0,5"/>
             </StackPanel>
         </xctk:WizardPage>
@@ -62,12 +62,12 @@
         </xctk:WizardPage>
 
         <!-- Seite 4: K?rperstruktur -->
-        <xctk:WizardPage Title="Koerperstruktur">
+        <xctk:WizardPage Title="K?rperstruktur">
             <StackPanel>
                 <TextBlock Text="Knochenmasse" />
                 <xctk:DoubleUpDown Value="{Binding Knochenmasse}" Width="120" Margin="0,5"/>
 
-                <TextBlock Text="Eiweissmenge" />
+                <TextBlock Text="Eiwei?menge" />
                 <xctk:DoubleUpDown Value="{Binding Eiweissmenge}" Width="120" Margin="0,5"/>
 
                 <TextBlock Text="Proteine" />
@@ -81,7 +81,7 @@
                 <TextBlock Text="Wassergehalt" />
                 <xctk:DoubleUpDown Value="{Binding Wassergehalt}" Width="120" Margin="0,5"/>
 
-                <TextBlock Text="Koerperwasser (%)" />
+                <TextBlock Text="K?rperwasser (%)" />
                 <xctk:DoubleUpDown Value="{Binding Koerperwasser}" Width="120" Margin="0,5"/>
             </StackPanel>
         </xctk:WizardPage>
@@ -94,14 +94,6 @@
 
                 <TextBlock Text="Viszerales Fett" />
                 <xctk:DoubleUpDown Value="{Binding ViszeralesFett}" Width="120" Margin="0,5"/>
-
-
-                <StackPanel Orientation="Vertical" Width="50" Height="150">
-                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelRot}" Margin="5"/>
-                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelGelb}" Margin="5"/>
-                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelGruen}" Margin="5"/>
-                </StackPanel>
-                
             </StackPanel>
         </xctk:WizardPage>
 

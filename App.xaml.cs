@@ -2,6 +2,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Windows;
+using ModernWpf;
 
 namespace Healthmanagment;
 
@@ -21,6 +22,12 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = culture;
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
+    }
+
+    public App()
+    {
+        ModernWpf.ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+        ModernWpf.ThemeManager.Current.AccentColor = System.Windows.Media.Colors.LightSkyBlue;
     }
 
 }

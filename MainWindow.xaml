@@ -25,16 +25,16 @@
                     </MenuItem.Icon>
                     <MenuItem Header="Messwerte Blutdruck"/>
                     <MenuItem Header="Morgens"/>
-                    <MenuItem Header="Testen" Click="Testen_Click" IsCheckable="True"/>
+                    <MenuItem Header="Abends"/>
                 </MenuItem>
-                <MenuItem Header="_SUBMENU2" IsCheckable="true"/>
-                <MenuItem Header="Versuche" Click="Testen_Click" IsCheckable="True"/>
+                <MenuItem Header="Versuche" Click="Versuche_Click" IsCheckable="true"/>
+                <MenuItem Header="_SUBMENU3" IsCheckable="true"/>
             </MenuItem>
             
             
             <MenuItem Header="Auswertungen">
                 <MenuItem Header="Blutdruck"/>
-                <MenuItem Header="Pruefen" Click="Pruef_Click" IsCheckable="True"/>
+                <MenuItem Header="Pr?fen" Click="Pruef_Click" IsCheckable="True"/>
                 <Separator/>
                 <MenuItem Header="Wochen Muskeln" Click="Woche_Click" IsCheckable="True"/>
                 <MenuItem Header="Copy"/>
@@ -56,7 +56,7 @@
                 <Separator/>
                 <MenuItem x:Name="MuskelTrain" Header="Muskel Training" Click="Muskeln_Click" IsCheckable="True"/>
                 <MenuItem x:Name="Schmerz" Header="Schmerzen" Click="Schmerz_Click" IsCheckable="True"/>
-                <MenuItem x:Name="Gewicht" Header="Koerperhewicht" Click="Koerpergewicht_Click" IsCheckable="True"/>
+                <MenuItem x:Name="Gewicht" Header="K?rperhewicht" Click="Koerpergewicht_Click" IsCheckable="True"/>
             </MenuItem>
 
 

@@ -64,14 +64,14 @@ namespace Healthmanagment.ViewModel
 
             string sql = @"
         INSERT INTO Fitdays (
-            Datum, Gewicht, BMI, Körperfett, Fettmasse, Fettfrei,
+            Datum, Gewicht, BMI, K?rperfett, Fettmasse, Fettfrei,
             Muskelmasse, Muskelrate, Skelettmuskulatur, Knochenmasse,
-            Eiweismenge, Protein, Wasseergehalt, Körperwasser,
+            Eiweismenge, Protein, Wasseergehalt, K?rperwasser,
             Unterhautfett, Vizeralfett, BMR)
         VALUES (
-            @Datum, @Gewicht, @BMI, @Koerperfett, @Fettmasse, @Fettfrei,
+            @Datum, @Gewicht, @BMI, @K?rperfett, @Fettmasse, @Fettfrei,
             @Muskelmasse, @Muskelrate, @Skelettmuskulatur, @Knochenmasse,
-            @Eiweismenge, @Protein, @Wasseergehalt, @Koerperwasser,
+            @Eiweismenge, @Protein, @Wasseergehalt, @K?rperwasser,
             @Unterhautfett, @Vizeralfett, @BMR)";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -80,7 +80,7 @@ namespace Healthmanagment.ViewModel
                 cmd.Parameters.AddWithValue("@Datum", DateTime.Now);
                 cmd.Parameters.AddWithValue("@Gewicht", Gewicht);
                 cmd.Parameters.AddWithValue("@BMI", BMI);
-                cmd.Parameters.AddWithValue("@Koerperfett", Koerperfett);
+                cmd.Parameters.AddWithValue("@K?rperfett", Koerperfett);
                 cmd.Parameters.AddWithValue("@Fettmasse", Fettmasse);
                 cmd.Parameters.AddWithValue("@Fettfrei", FettfreiesKoerpergewicht);
                 cmd.Parameters.AddWithValue("@Muskelmasse", Muskelmasse);
@@ -90,7 +90,7 @@ namespace Healthmanagment.ViewModel
                 cmd.Parameters.AddWithValue("@Eiweismenge", Eiweissmenge);
                 cmd.Parameters.AddWithValue("@Protein", Proteine);
                 cmd.Parameters.AddWithValue("@Wasseergehalt", Wassergehalt);
-                cmd.Parameters.AddWithValue("@Koerperwasser", Koerperwasser);
+                cmd.Parameters.AddWithValue("@K?rperwasser", Koerperwasser);
                 cmd.Parameters.AddWithValue("@Unterhautfett", Unterhautfettgewebe);
                 cmd.Parameters.AddWithValue("@Vizeralfett", ViszeralesFett);
                 cmd.Parameters.AddWithValue("@BMR", BMR);

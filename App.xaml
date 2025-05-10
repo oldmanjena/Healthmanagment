@@ -1,26 +1,43 @@
 <Application x:Class="Healthmanagment.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:Healthmanagment"
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+                <ResourceDictionary>                    
+                    <Style x:Key="ModernTimePickerStyle" TargetType="{x:Type xctk:TimePicker}">
+                        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundTransparentBrush}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+                        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+                        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBrush}" />
+                    </Style>
 
-                <!-- Dein GlobalStyle -->
-                <ResourceDictionary Source="Design/GlobalStyles.xaml"/>
+                    <Style TargetType="Window">
+                        <Setter Property="Background" Value="LightBlue"/>
+                    </Style>
+                </ResourceDictionary>
 
               
 
-                
-                <md:BundledTheme BaseTheme="Light" 
-                                 PrimaryColor="Blue" 
-                                 SecondaryColor="Lime" />
 
-                <!-- Optional: Control-spezifische Styles -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.NumericUpDown.xaml" />
+            
+
+
+
+
+
+
+        <!-- Optional: Control-spezifische Styles -->
+                
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
