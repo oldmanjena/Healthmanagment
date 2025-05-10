@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Healthmanagment.Versuche"
         mc:Ignorable="d"
         Title="VersucheControl" Height="450" Width="800"
-       Background="{DynamicResource ApplicationPageBackgroundThemeBrush}">
+        Background="LightBlue">
 
     <Grid>
         <xctk:TimePicker x:Name="textBox"

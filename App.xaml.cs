@@ -22,14 +22,12 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = culture;
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
+        //Hintergrund einstellen
+        ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Light;
+        ModernWpf.ThemeManager.Current.AccentColor = System.Windows.Media.Colors.LightBlue;
     }
 
-    public App()
-    {
-        ModernWpf.ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-        ModernWpf.ThemeManager.Current.AccentColor = System.Windows.Media.Colors.LightSkyBlue;
-    }
-
+   
 }
 
 

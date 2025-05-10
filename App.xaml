@@ -11,36 +11,28 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
-                <ResourceDictionary>                    
-                    <Style x:Key="ModernTimePickerStyle" TargetType="{x:Type xctk:TimePicker}">
-                        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundTransparentBrush}" />
-                        <Setter Property="BorderThickness" Value="1" />
-                        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
-                        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
-                        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBrush}" />
-                    </Style>
-
-                    <Style TargetType="Window">
-                        <Setter Property="Background" Value="LightBlue"/>
-                    </Style>
-                </ResourceDictionary>
-
-              
-
-
-            
-
-
-
-
-
-
-        <!-- Optional: Control-spezifische Styles -->
-                
-
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Benutzerdefinierte LightBlue Farbe -->
+            <Color x:Key="LightBlueColor">#ADD8E6</Color>
+            <!-- LightBlue-Farbe -->
+            <SolidColorBrush x:Key="LightBlueBrush" Color="{StaticResource LightBlueColor}" />
+
+            <!-- Globaler Hintergrund fuer alle Fenster -->
+            <Style TargetType="Window">
+                <Setter Property="Background" Value="{StaticResource LightBlueBrush}"/>
+            </Style>
+
+            <!-- Style fuer Xceed TimePicker -->
+            <Style x:Key="ModernTimePickerStyle" TargetType="{x:Type xctk:TimePicker}">
+                <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundTransparentBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+                <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBrush}" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
-
