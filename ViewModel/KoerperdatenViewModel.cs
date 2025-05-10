@@ -64,14 +64,14 @@ namespace Healthmanagment.ViewModel
 
             string sql = @"
         INSERT INTO Fitdays (
-            Datum, Gewicht, BMI, K?rperfett, Fettmasse, Fettfrei,
+            Datum, Gewicht, BMI, Körperfett, Fettmasse, Fettfrei,
             Muskelmasse, Muskelrate, Skelettmuskulatur, Knochenmasse,
-            Eiweismenge, Protein, Wasseergehalt, K?rperwasser,
+            Eiweismenge, Protein, Wasseergehalt, Körperwasser,
             Unterhautfett, Vizeralfett, BMR)
         VALUES (
-            @Datum, @Gewicht, @BMI, @K?rperfett, @Fettmasse, @Fettfrei,
+            @Datum, @Gewicht, @BMI, @Koerperfett, @Fettmasse, @Fettfrei,
             @Muskelmasse, @Muskelrate, @Skelettmuskulatur, @Knochenmasse,
-            @Eiweismenge, @Protein, @Wasseergehalt, @K?rperwasser,
+            @Eiweismenge, @Protein, @Wasseergehalt, @Koerperwasser,
             @Unterhautfett, @Vizeralfett, @BMR)";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -80,7 +80,7 @@ namespace Healthmanagment.ViewModel
                 cmd.Parameters.AddWithValue("@Datum", DateTime.Now);
                 cmd.Parameters.AddWithValue("@Gewicht", Gewicht);
                 cmd.Parameters.AddWithValue("@BMI", BMI);
-                cmd.Parameters.AddWithValue("@K?rperfett", Koerperfett);
+                cmd.Parameters.AddWithValue("@Koerperfett", Koerperfett);
                 cmd.Parameters.AddWithValue("@Fettmasse", Fettmasse);
                 cmd.Parameters.AddWithValue("@Fettfrei", FettfreiesKoerpergewicht);
                 cmd.Parameters.AddWithValue("@Muskelmasse", Muskelmasse);
