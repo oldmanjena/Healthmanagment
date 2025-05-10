@@ -13,10 +13,16 @@
 
 
 
-<StackPanel Margin="10">
+    <StackPanel Margin="10">
         <Menu Width="757" Margin="10"
-          HorizontalAlignment="Left" Background="White"
-          BorderBrush="Blue" BorderThickness="2">
+          HorizontalAlignment="Left"
+          Background="LightBlue"
+          Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+          FontFamily="{DynamicResource ContentControlThemeFontFamily}"
+          FontSize="{DynamicResource ControlContentThemeFontSize}"
+          BorderBrush="DarkBlue"
+          BorderThickness="0"
+          SnapsToDevicePixels="True">
 
             <MenuItem Header="Administration">
                 <MenuItem Header="Blutdruck">
@@ -27,14 +33,13 @@
                     <MenuItem Header="Morgens"/>
                     <MenuItem Header="Abends"/>
                 </MenuItem>
-                <MenuItem Header="Versuche" Click="Versuche_Click" IsCheckable="true"/>
-                <MenuItem Header="_SUBMENU3" IsCheckable="true"/>
+                <MenuItem Header="Versuche" Click="Versuche_Click" IsCheckable="True"/>
+                <MenuItem Header="_SUBMENU3" IsCheckable="True"/>
             </MenuItem>
-            
-            
+
             <MenuItem Header="Auswertungen">
                 <MenuItem Header="Blutdruck"/>
-                <MenuItem Header="Pr?fen" Click="Pruef_Click" IsCheckable="True"/>
+                <MenuItem Header="Prüfen" Click="Pruef_Click" IsCheckable="True"/>
                 <Separator/>
                 <MenuItem Header="Wochen Muskeln" Click="Woche_Click" IsCheckable="True"/>
                 <MenuItem Header="Copy"/>
@@ -56,9 +61,8 @@
                 <Separator/>
                 <MenuItem x:Name="MuskelTrain" Header="Muskel Training" Click="Muskeln_Click" IsCheckable="True"/>
                 <MenuItem x:Name="Schmerz" Header="Schmerzen" Click="Schmerz_Click" IsCheckable="True"/>
-                <MenuItem x:Name="Gewicht" Header="K?rperhewicht" Click="Koerpergewicht_Click" IsCheckable="True"/>
+                <MenuItem x:Name="Gewicht" Header="Körpergewicht" Click="Koerpergewicht_Click" IsCheckable="True"/>
             </MenuItem>
-
 
             <MenuItem Header="Suchen">
                 <MenuItem Header="Blutdruck Suchen" Click="SuBlut_Click" IsCheckable="True"/>
@@ -71,16 +75,13 @@
 
             <MenuItem Header="Planung">
                 <MenuItem Header="Training" Click="Training_Click" IsCheckable="True"/>
-                <MenuItem Header="Pan Update" Click="PlanUpdate_Click" IsCheckable="True"/>
+                <MenuItem Header="Plan Update" Click="PlanUpdate_Click" IsCheckable="True"/>
                 <Separator/>
                 <MenuItem Header="Ziele" Click="ZielEin_Click" IsCheckable="True"/>
                 <MenuItem Header="Copy"/>
                 <MenuItem Header="Paste"/>
             </MenuItem>
         </Menu>
-        
-        
-
     </StackPanel>
 
 </Window>
