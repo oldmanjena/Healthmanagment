@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:Healthmanagment.ViewModel" 
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MuskelEin" Height="600" Width="1300">
+        Title="MuskelEin" Height="800" Width="1300">
 
     <Window.Resources>
         <conv:MaskedTextToDecimalConverter x:Key="MaskedTextToDecimalConverter" />
@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Trainingstag:" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"/>
-        <DatePicker x:Name="dtpDatum" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Width="150" Height="25" SelectedDate="{Binding SelectedDate}"/>
+        <DatePicker x:Name="dtpDatum" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Width="150" Height="42" SelectedDate="{Binding SelectedDate}"/>
 
         <Label Content="Muskelgruppe:" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5"/>
         <ComboBox x:Name="cmbGruppe"
@@ -51,16 +51,15 @@
                   Grid.Row="1" Grid.Column="1" Margin="12,12,32,12"
                   Width="NaN" Height="NaN" SelectionChanged="cmbGruppe_SelectionChanged_1" />
 
-        <Label Content="Trainingsnummer:" Grid.Row="1" Grid.Column="2" Margin="147,5,5,5" Height="25" Width="79"/>
+        <Label Content="Trainingsnummer:" Grid.Row="1" Grid.Column="2" Margin="116,16,5,16" Height="25"/>
         <ComboBox x:Name="cmbtrainingsnummer"
                   ItemsSource="{Binding Trainingsnummern}"
                   SelectedItem="{Binding TrainNr}"
                   Grid.Row="1" Grid.Column="3"
-                  Margin="10,12,0,12" Width="150" Height="NaN"
-                  HorizontalAlignment="Left"/>
+                  Margin="10,0,0,0" Width="188" Height="NaN" VerticalAlignment="Center"/>
 
-        <Label Content="Letzte WH Anzahl:" Grid.Row="5" Grid.Column="3" Margin="0,10,388,11"/>
-        <TextBox x:Name="txtLetztWh" Grid.Row="5" Grid.Column="3" Margin="93,12,328,13" Width="75" Height="NaN"/>
+        <Label Content="Letzte WH Anzahl:" Grid.Row="5" Grid.Column="3" Margin="0,10,373,11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtLetztWh" Grid.Row="5" Grid.Column="3" Margin="129,15,239,10" Height="NaN"/>
 
         <Label Content="Zielmuskel:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,5"/>
         <ComboBox x:Name="cmbZiel"
@@ -71,11 +70,11 @@
         <Label Content="Trainingsart:" Grid.Row="2" Grid.Column="2" Margin="147,12,5,17" Height="25"/>
         <ComboBox x:Name="cmbArt"
                   Grid.Row="2" Grid.Column="3"
-                  Margin="10,13,336,18" Width="150" Height="23"
+                  Margin="10,0,0,0" Width="188" Height="31" VerticalAlignment="Center"
                   />
-        <Label Content="Letztes Gewicht:" Grid.Row="5" Grid.Column="3          " Margin="190,12,0,9" HorizontalAlignment="Left" Width="100" Height="30"/>
+        <Label Content="Letztes Gewicht:" Grid.Row="5" Grid.Column="3" Margin="265,18,0,10" HorizontalAlignment="Left" Width="100" Height="30" VerticalAlignment="Center"/>
         <TextBox x:Name="txtletztGewicht" Grid.Row="5" Grid.Column="3"
-                 Margin="294,13,123,13" Width="NaN"
+                 Margin="370,15,19,11" Width="NaN"
                  RenderTransformOrigin="-3.96,2.9"
                  SelectionOpacity="100"/>
 
@@ -93,17 +92,17 @@
                  Value="{Binding Satz, Mode=TwoWay}"                      
                   Minimum="0" Maximum="100" 
                   Margin="12" Width="65" Height="25"
-                  HorizontalAlignment="Left"/>       
+                  HorizontalAlignment="Left"/>
 
-        <Label Content="Gewicht Veraen." Grid.Row="4" Grid.Column="2" Margin="147,0,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="Gewicht Veraen." Grid.Row="4" Grid.Column="2" Margin="116,9,1,0" VerticalAlignment="Top" Height="25"/>
         <TextBox x:Name="txtVer"
                  Text="{Binding Veraenderung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MaskedTextToDecimalConverter}}"
-                 Grid.Row="4" Grid.Column="2" Margin="230,0,357,34"
-                 Width="75" Grid.ColumnSpan="2"/>
+                 Grid.Row="4" Grid.Column="3" Margin="26,0,384,50"
+                 Width="75"/>
 
 
         <Label Content="Wiederholungen:" Grid.Row="5" Grid.Column="0" Margin="5,5,5,5"/>
-        
+
         <xctk:IntegerUpDown  x:Name="txtWh" Grid.Row="5" Grid.Column="1"
           Foreground="Black" Background="White"
           Value="{Binding Wiederholungen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -111,7 +110,7 @@
            Minimum="5" Maximum="100" 
            Margin="12" Width="65" Height="25"
            HorizontalAlignment="Left"/>
-        
+
         <Label Content="Prozentuale Gewicht:" Grid.Row="4" Grid.Column="3" Margin="157,0,206,34" Height="25"/>
 
         <Label Content="Trainingsgewicht:" Grid.Row="6" Grid.Column="0" Margin="5,5,5,5"/>
@@ -121,7 +120,7 @@
           Grid.Column="1" Margin="12,13,0,5" Width="75" HorizontalAlignment="Left"
          ValueChanged="txtGewicht_ValueChanged"/>
 
-        <Label Content="Krank?" Grid.Row="5" Grid.Column="2" Margin="5,44,5,17" Grid.RowSpan="2"/>
+        <Label Content="Krank?" Grid.Row="6" Grid.Column="2" Margin="97,5,10,27"/>
         <CheckBox x:Name="chkKrank"
                   IsChecked="{Binding IstKrank, Mode=TwoWay}"
                   Content="Krank"
@@ -132,7 +131,7 @@
                   IsChecked="{Binding IstNichtKrank, Mode=TwoWay}"
                   Content="nicht Krank"
                   Grid.Row="6" Grid.Column="3"
-                  Margin="121,0,281,14"/>
+                  Margin="121,2,0,0" VerticalAlignment="Top" Width="158"/>
 
         <Grid Grid.Row="7" Grid.ColumnSpan="4" Margin="10,10,6,10">
             <DataGrid x:Name="dtgUeber"
@@ -161,7 +160,7 @@
                       RowHeight="30"
                       AlternatingRowBackground="LightYellow"
                       ColumnHeaderHeight="40"
-                      ItemsSource="{Binding AufwaermDatenView}" />
+                      ItemsSource="{Binding AufwaermDatenView}" Margin="0,27,0,-27" />
 
         </Grid>
 
@@ -171,10 +170,10 @@
                 Margin="0,5,10,5" Grid.ColumnSpan="2" Cursor="Hand"/>
         <Button x:Name="btn_Ende" Content="Beenden" Grid.Row="0" Grid.Column="5" Margin="0,5,10,5" RenderTransformOrigin="-0.48,0.7" Grid.ColumnSpan="2" Click="btn_Ende_Click"/>
         <TextBox x:Name="txtVerPro" Grid.Column="3" HorizontalAlignment="Left" Margin="298,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Height="25"/>
-        <Label x:Name="label" Grid.Column="2" Content="WH Ver?nd." HorizontalAlignment="Left" Margin="147,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25" Width="100"/>
-        <TextBox x:Name="txtWHVer" Grid.Column="3" HorizontalAlignment="Left" Margin="33,29,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="txtWHVerPro" Grid.Column="3" Content="Proz WH:" HorizontalAlignment="Left" Margin="169,28,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25"/>
-        <TextBox x:Name="txtWhProz" Grid.Column="3" HorizontalAlignment="Left" Margin="298,30,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Grid.Column="2" Content="WH Veaend." HorizontalAlignment="Left" Margin="116,30,0,0" Grid.Row="4" VerticalAlignment="Center" Height="25" Width="131" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtWHVer" Grid.Column="3" HorizontalAlignment="Left" Margin="31,37,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+        <Label x:Name="txtWHVerPro" Grid.Column="3" Content="Proz WH:" HorizontalAlignment="Left" Margin="169,28,0,0" Grid.Row="4" VerticalAlignment="Center" Height="25"/>
+        <TextBox x:Name="txtWhProz" Grid.Column="3" HorizontalAlignment="Left" Margin="298,34,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="txtAufwaermen" Grid.Column="5" 
                  Content="Aufwrmen anzeigen" 
                  Command="{Binding AnzeigenAufwaermenCommand}"
