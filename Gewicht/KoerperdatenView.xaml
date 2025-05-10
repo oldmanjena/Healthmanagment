@@ -10,7 +10,7 @@
         mc:Ignorable="d"       
         
         Title="K?rperdaten" Height="800" Width="500"
-        Style="{StaticResource {x:Type Window}}">
+        Background="{StaticResource LightBlueBrush}">
 
     <Window.Resources>
         <conv:MaskedTextToDecimalConverter x:Key="DecimalConverter" />
@@ -19,12 +19,14 @@
     </Window.Resources>
 
     <xctk:Wizard x:Name="KoerperdatenWizard" 
-             FinishButtonClosesWindow="False">     
+             FinishButtonClosesWindow="False"
+             Background="{StaticResource LightBlueBrush}">     
 
 
         <!-- Seite 1: Basiswerte -->
-        <xctk:WizardPage Title="Basiswerte">
-            <StackPanel>
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="Basiswerte">
+
+            <StackPanel Background="{DynamicResource LightBlueBrush}">
                 <TextBlock Text="Gewicht (kg)" />
                 <xctk:DoubleUpDown Value="{Binding Gewicht}" Width="120" Margin="0,5"/>
 
@@ -34,9 +36,9 @@
         </xctk:WizardPage>
 
         <!-- Seite 2: Fettverteilung -->
-        <xctk:WizardPage Title="Fettverteilung">
-            <StackPanel>
-                <TextBlock Text="K?rperfett (%)" />
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="Fettverteilung">
+            <StackPanel Background="{DynamicResource LightBlueBrush}">
+                <TextBlock Text="Koerperfett (%)" />
                 <xctk:DoubleUpDown Value="{Binding Koerperfett}" Width="120" Margin="0,5"/>
 
                 <TextBlock Text="Fettmasse (kg)" />
@@ -48,8 +50,8 @@
         </xctk:WizardPage>
 
         <!-- Seite 3: Muskelmasse -->
-        <xctk:WizardPage Title="Muskelmasse">
-            <StackPanel>
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="Muskelmasse">
+            <StackPanel Background="{DynamicResource LightBlueBrush}">
                 <TextBlock Text="Muskelmasse" />
                 <xctk:DoubleUpDown Value="{Binding Muskelmasse}" Width="120" Margin="0,5"/>
 
@@ -61,13 +63,13 @@
             </StackPanel>
         </xctk:WizardPage>
 
-        <!-- Seite 4: K?rperstruktur -->
-        <xctk:WizardPage Title="K?rperstruktur">
-            <StackPanel>
+        <!-- Seite 4: Koerperstruktur -->
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="K?rperstruktur">
+            <StackPanel Background="{DynamicResource LightBlueBrush}">
                 <TextBlock Text="Knochenmasse" />
                 <xctk:DoubleUpDown Value="{Binding Knochenmasse}" Width="120" Margin="0,5"/>
 
-                <TextBlock Text="Eiwei?menge" />
+                <TextBlock Text="Eiweissmenge" />
                 <xctk:DoubleUpDown Value="{Binding Eiweissmenge}" Width="120" Margin="0,5"/>
 
                 <TextBlock Text="Proteine" />
@@ -76,38 +78,49 @@
         </xctk:WizardPage>
 
         <!-- Seite 5: Wasserhaushalt -->
-        <xctk:WizardPage Title="Wasserhaushalt">
-            <StackPanel>
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="Wasserhaushalt">
+            <StackPanel Background="{DynamicResource LightBlueBrush}">
                 <TextBlock Text="Wassergehalt" />
                 <xctk:DoubleUpDown Value="{Binding Wassergehalt}" Width="120" Margin="0,5"/>
 
-                <TextBlock Text="K?rperwasser (%)" />
+                <TextBlock Text="Koerperwasser (%)" />
                 <xctk:DoubleUpDown Value="{Binding Koerperwasser}" Width="120" Margin="0,5"/>
             </StackPanel>
         </xctk:WizardPage>
 
         <!-- Seite 6: Fettverteilung Details -->
-        <xctk:WizardPage Title="Fettverteilung Details">
-            <StackPanel>
+        <xctk:WizardPage Background="{DynamicResource LightBlueBrush}" Title="Fettverteilung Details">
+            <StackPanel Background="{StaticResource LightBlueBrush}">
                 <TextBlock Text="Unterhautfettgewebe" />
                 <xctk:DoubleUpDown Value="{Binding Unterhautfettgewebe}" Width="120" Margin="0,5"/>
 
                 <TextBlock Text="Viszerales Fett" />
                 <xctk:DoubleUpDown Value="{Binding ViszeralesFett}" Width="120" Margin="0,5"/>
+
+
+                <StackPanel Orientation="Vertical" Width="50" Height="150">
+                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelRot}" Margin="5"/>
+                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelGelb}" Margin="5"/>
+                    <Ellipse Width="40" Height="40" Fill="{Binding AmpelGruen}" Margin="5"/>
+                </StackPanel>
             </StackPanel>
         </xctk:WizardPage>
 
         <!-- Seite 7: Metabolismus -->
-        <xctk:WizardPage Title="Metabolismus">
-            <StackPanel>
+        <xctk:WizardPage  Background="{StaticResource LightBlueBrush}" Title="Metabolismus">
+            <StackPanel  Background="{StaticResource LightBlueBrush}">
                 <TextBlock Text="BMR" />
                 <xctk:DoubleUpDown Value="{Binding BMR}" Width="120" Margin="0,5"/>
+            
+                <Ellipse Width="40" Height="40" Fill="{Binding AmpelRot}" Margin="5"/>
+                <Ellipse Width="40" Height="40" Fill="{Binding AmpelGelb}" Margin="5"/>
+                <Ellipse Width="40" Height="40" Fill="{Binding AmpelGruen}" Margin="5"/>
             </StackPanel>
         </xctk:WizardPage>
 
         <!-- Seite 8: Abschluss -->
-        <xctk:WizardPage Title="Fertigstellen">
-            <StackPanel>
+        <xctk:WizardPage  Background="{StaticResource LightBlueBrush}" Title="Fertigstellen">
+            <StackPanel  Background="{StaticResource LightBlueBrush}">
                 <TextBlock Text="Alle Daten sind eingegeben. Klicke auf Speichern, um die Werte zu ?bernehmen." Margin="0,0,0,10"/>
                 <Button Content="Speichern" Command="{Binding SpeichernCommand}" Click="OnFinishButtonClicked" Width="150" Height="35" HorizontalAlignment="Left"/>
             </StackPanel>
