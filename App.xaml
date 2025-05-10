@@ -40,6 +40,13 @@
                 <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
                 <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBrush}" />
             </Style>
+            <!-- Style fuer Xceed TimePicker -->
+            <Style x:Key="Textblock" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontFamily" Value="Arial Rounded MT Bold"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>
