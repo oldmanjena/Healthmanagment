@@ -89,7 +89,7 @@
                      Value="{Binding TrainingsVM.Anaerober, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      Minimum="0.5" Maximum="100" Increment="0.1"
                      Grid.Column="4" Grid.Row="1" 
-                     Margin="184,3,6,14" Width="80"/>
+                     Margin="184,3,6,14" Width="80" Height="32"/>
 
             <TextBlock x:Name="Dauer" Text="Dauer:" Grid.Row="2" HorizontalAlignment="Center" Height="20" Width="100"/>
             <TextBox x:Name="txtDauer"  Text="{Binding TrainingsVM.DauerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="0,9,195,13" Width="NaN"/>
@@ -150,7 +150,7 @@
         </Grid>
 
         <!-- DataGrid f?r Trainingsdaten -->
-        <DataGrid ItemsSource="{Binding TrainingsVM.TrainingsDaten}" Grid.Row="1" AutoGenerateColumns="True" Margin="0,113,0,24"/>
+        <DataGrid ItemsSource="{Binding TrainingsVM.TrainingsDaten}" Grid.Row="1" AutoGenerateColumns="True" Margin="0,97,0,24"/>
         <Border Grid.Row="3" Background="LightGray" Padding="8">
             <TextBlock Text="? 2025 ? Dein Gesundheitsmanager | Letzte ?nderung: Heute  | Mithilfe von ChatGPT und Gemini" 
                HorizontalAlignment="Center" 
