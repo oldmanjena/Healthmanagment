@@ -25,13 +25,15 @@ namespace Healthmanagment.ViewModel
         {
             TrainingsDaten = new ObservableCollection<TrainingsEintrag>();
             EintragenCommand = new RelayCommand(EintragHinzufuegen);
+            Start = DateTime.Now.TimeOfDay;
+            Debug.WriteLine($"Startzeit gesetzt auf: {Start}");
         }
 
         // Properties gebunden an UI
         public DateTime Datum { get; set; } = DateTime.Now;
         public int KW { get; set; }
         public DateTime Wochentag { get; set; } = DateTime.Now; // In DB als datetime? -> pr?fen!
-        public TimeSpan? Start { get; set; } 
+      //  public TimeSpan? Start { get; set; } 
         public TimeSpan? Dauer { get; set; }
 
         public int RPM { get; set; }
@@ -48,6 +50,12 @@ namespace Healthmanagment.ViewModel
         public int Per_id { get; set; }
         public double Puls_Max { get; set; }
 
+        //public int effekt { get; set; }
+
+
+
+      
+
         private void EintragHinzufuegen(object obj)
         {
             try
@@ -59,8 +67,8 @@ namespace Healthmanagment.ViewModel
                 {
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(
-                        "INSERT INTO Training(Datum, KW, Wochentag, Start, Dauer, RPM, Entfernung, kcal, Puls, Aerober, Anearober, Regenaration, VO2max, Plan_Nr, Kommentar, Per_id) " +
-                        "VALUES (@Datum, @KW, @Wochentag, @Start, @Dauer, @RPM, @Entfernung, @kcal, @Puls, @Aerober, @Anearober, @Rege, @VO2max, @Plan_Nr, @Kommentar, @perid)", con))
+                        "INSERT INTO Training(Datum, KW, Wochentag, Start, Dauer, RPM, Entfernung, kcal, Puls, Aerober, Anearober, Regenaration, VO2max, Plan_Nr, Kommentar, Per_id, effekt) " +
+                        "VALUES (@Datum, @KW, @Wochentag, @Start, @Dauer, @RPM, @Entfernung, @kcal, @Puls, @Aerober, @Anearober, @Rege, @VO2max, @Plan_Nr, @Kommentar, @perid, @effekt)", con))
                     {
                         cmd.Parameters.AddWithValue("@Datum", Datum);
                         cmd.Parameters.AddWithValue("@KW", KW);
@@ -78,12 +86,13 @@ namespace Healthmanagment.ViewModel
                         cmd.Parameters.AddWithValue("@Plan_Nr", PlanNr);
                         cmd.Parameters.AddWithValue("@Kommentar", Kommentar);
                         cmd.Parameters.AddWithValue("@perid", "1"); // Fester Platzhalterwert
+                        cmd.Parameters.AddWithValue("@effekt", effekt); // TIMPR
 
                         foreach (SqlParameter param in cmd.Parameters)
                         {
                             Debug.WriteLine($"{param.ParameterName} = {param.Value} ({param.Value?.GetType()})");
                         }
-                        Debug.WriteLine($"Dauer intern: {Dauer?.ToString() ?? "NULL"}");
+                       
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -104,7 +113,8 @@ namespace Healthmanagment.ViewModel
                     Regeneration = (decimal)Regeneration,
                     VO2max = VO2max,
                     PlanNr = PlanNr,
-                    Kommentar = Kommentar
+                    Kommentar = Kommentar,
+                    effekt = effekt
                 });
 
                 MessageBox.Show("Eintrag erfolgreich gespeichert!", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -157,30 +167,23 @@ namespace Healthmanagment.ViewModel
             }
         }
 
-
-        private string _startstring;
-        public string Startstring
+        private TimeSpan? _start;
+        public TimeSpan? Start
         {
-            get => _startstring;
+            get => _start;
             set
             {
-                _startstring = value;
-                OnPropertyChanged(nameof(Startstring));
-
-                if (TimeSpan.TryParseExact(value, "hh\\:mm", CultureInfo.InvariantCulture, out TimeSpan result))
+                if (_start != value)
                 {
-                    Start = result;
-                    Debug.WriteLine($"Start gesetzt (TryParseExact): {Start?.ToString() ?? "NULL"}"); // F?ge diese Debug-Ausgabe hinzu
+                    _start = value;
+                    OnPropertyChanged(nameof(Start));
+                    Debug.WriteLine($"Start wurde auf {Start} gesetzt.");
                 }
-                else
-                {
-                    Start = null;
-                    Debug.WriteLine($"Start auf NULL gesetzt (TryParseExact fehlgeschlagen): {value}"); // F?ge diese Debug-Ausgabe hinzu
-                }
-
-                Debug.WriteLine($"Start gesetzt (Property): {Start?.ToString() ?? "NULL"}"); // F?ge diese Debug-Ausgabe hinzu
             }
         }
+
+
+
 
 
         private string _kommentar;
@@ -223,6 +226,20 @@ namespace Healthmanagment.ViewModel
                 {
                     _planNr = value;
                     OnPropertyChanged(nameof(PlanNr));
+                }
+            }
+        }
+
+        private double _effekt;
+        public double effekt
+        {
+            get => _effekt;
+            set
+            {
+                if (_effekt != value)
+                {
+                    _effekt = value;
+                    OnPropertyChanged(nameof(effekt));
                 }
             }
         }

@@ -23,6 +23,7 @@ namespace Healthmanagment.Klassen
         public int VO2max { get; set; }
         public int PlanNr { get; set; }
         public string Kommentar { get; set; }
+        public double effekt { get; set; }
     }
 }
 

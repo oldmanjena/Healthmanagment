@@ -90,7 +90,7 @@ namespace Healthmanagment.ViewModel
                 cmd.Parameters.AddWithValue("@Eiweismenge", Eiweissmenge);
                 cmd.Parameters.AddWithValue("@Protein", Proteine);
                 cmd.Parameters.AddWithValue("@Wasseergehalt", Wassergehalt);
-                cmd.Parameters.AddWithValue("@K?rperwasser", Koerperwasser);
+                cmd.Parameters.AddWithValue("@Koerperwasser", Koerperwasser);
                 cmd.Parameters.AddWithValue("@Unterhautfett", Unterhautfettgewebe);
                 cmd.Parameters.AddWithValue("@Vizeralfett", ViszeralesFett);
                 cmd.Parameters.AddWithValue("@BMR", BMR);
