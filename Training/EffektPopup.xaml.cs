@@ -31,9 +31,10 @@ namespace Healthmanagment.Training
             // Beispielhafte Berechnung
             if (double.TryParse(txtWert1.Text, out double w1) &&
                 double.TryParse(txtWert2.Text, out double w2) &&
-                double.TryParse(txtWert3.Text, out double w3))
+                double.TryParse(txtWert3.Text, out double w3) &&
+                double.TryParse(txtWert4.Text, out double w4))
             {
-                double result = w1 * 0.8 + w2 * 1.0 + w3 * 1.2;
+                double result = w1 * 1 + w2 * 2.0 + w3 * 3.0 + w4 * 4.0;
                 ErgebnisText = result.ToString("F1"); // ein Nachkommastelle
                 DialogResult = true; // Wichtig, um anzuzeigen, dass das Pop-up erfolgreich geschlossen wurde
                 Close(); // Schließe das Pop-up nach erfolgreicher Berechnung
