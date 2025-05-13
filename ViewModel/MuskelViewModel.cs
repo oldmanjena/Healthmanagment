@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -213,7 +212,7 @@ namespace Healthmanagment.ViewModel
         public Dictionary<string, List<string>> ZielDict { get; set; } = new()
         {
             { "Krank", new List<string> { "krank" } },
-            { "Ruecken", new List<string> { "Latissimus", "Trapezius", "unterer R?cken" } },
+            { "R?cken", new List<string> { "Latissimus", "Trapezius", "unterer R?cken" } },
             { "Beine", new List<string> { "Quadrizeps", "Harnstrings" } },
             { "Brust", new List<string> { "Obere Brust", "Mittlere Brust" } },
             { "Bizeps", new List<string> { "gesamter Bizeps" } },
@@ -221,7 +220,7 @@ namespace Healthmanagment.ViewModel
             { "Schulter", new List<string> { "vordere", "mittlere", "hintere" } },
             { "Bauch", new List<string> { "oberer", "gesamter", "unterer", "schr?ger" } },
             { "Unterarm", new List<string> { "gesamter" } },
-            { "Ganzkoerper", new List<string> { "gesamter" } }
+            { "Ganzk?rper", new List<string> { "gesamter" } }
         };
 
         // Nur die Keys als Liste (f?r ComboBox)
@@ -403,8 +402,8 @@ namespace Healthmanagment.ViewModel
 
 
         // Die Bindings f?r die ComboBoxen
-        public List<string> Arten { get; } = new() { "Definition", "Masseaufbau", "Diaet", "Normal" };
-        public List<string> Techniken { get; } = new() { "Aufwaermen", "Arbeitssatz", "Cool Down" };
+        public List<string> Arten { get; } = new() { "Definition", "Masseaufbau", "Di?t", "Normal" };
+        public List<string> Techniken { get; } = new() { "Aufw?rmen", "Arbeitssatz", "Cool Down" };
 
 
 

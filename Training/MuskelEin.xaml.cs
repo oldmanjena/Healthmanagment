@@ -2,14 +2,13 @@ using Healthmanagment.ViewModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel; // F?r INotifyPropertyChanged
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Configuration;
 
 namespace Healthmanagment.Training
 {
@@ -18,7 +17,7 @@ namespace Healthmanagment.Training
     /// </summary>
     public partial class MuskelEin : Window, INotifyPropertyChanged
     {
-       
+        private string connectionString = "data source=DESKTOP-726MH0T;initial catalog=gesundheit;trusted_connection=true"; // Ersetze dies mit deiner tats?chlichen Verbindungszeichenfolge
         private Dictionary<string, List<string>> ZielDict = new Dictionary<string, List<string>>();
         public ObservableCollection<TrainingEntry> TrainingEntries { get; set; } = new ObservableCollection<TrainingEntry>();
         private CollectionViewSource _letzteTrainingData;
@@ -49,8 +48,7 @@ namespace Healthmanagment.Training
             //  DataContext = new AktuellesDatumViewModel(); // Hier den neuen Namen verwenden
             // DataContext = new MuskelViewModel(); // Direkt setzen
             this.DataContext = new MuskelViewModel();
-            this.Loaded += Window_Loaded;
-            // Debug.WriteLine("DataContext: " + this.DataContext);
+           // Debug.WriteLine("DataContext: " + this.DataContext);
 
             FillComboBox(); // Rufe die Methode beim Initialisieren des Fensters auf
              Muskelgruppen = new ObservableCollection<string>(ZielDict.Keys);
@@ -98,55 +96,32 @@ namespace Healthmanagment.Training
             cmbTechnik.ItemsSource = new[] { "Aufw?rmen", "Arbeitssatz", "Cool Down" };
             cmbTechnik.SelectedIndex = 0; // W?hlt "Definition" aus
         }
-
-
+        
         private void FillComboBox()
         {
             var viewModel = (MuskelViewModel)this.DataContext;
-            viewModel.Trainingsnummern = new ObservableCollection<string>();
+            viewModel.Trainingsnummern = new ObservableCollection<string>(); // Initialisiere die ObservableCollection
 
-            string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
-
-            // Verwende Microsoft.Data.SqlClient.SqlConnection
-            using (Microsoft.Data.SqlClient.SqlConnection con = new Microsoft.Data.SqlClient.SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Planung WHERE erledigt < 1";
-                // Verwende Microsoft.Data.SqlClient.SqlCommand
-                using (Microsoft.Data.SqlClient.SqlCommand command = new Microsoft.Data.SqlClient.SqlCommand(query, con))
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
                 {
-                    try
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        con.Open();
-                        // Verwende Microsoft.Data.SqlClient.SqlDataReader
-                        using (Microsoft.Data.SqlClient.SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    string planNr = reader["Plan_Nr"].ToString();
-                                    System.Diagnostics.Debug.WriteLine($"Gelesene Plan_Nr: {planNr}");
-                                    viewModel.Trainingsnummern.Add(planNr);
-                                }
-                            }
-                            else
-                            {
-                                System.Diagnostics.Debug.WriteLine("Keine Zeilen in der Datenbank gefunden, die die Bedingung erfüllen.");
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fehler beim Abrufen der Daten: " + ex.Message);
-                    }
-                    finally
-                    {
-                        con.Close();
+                        viewModel.Trainingsnummern.Add(reader["Plan_Nr"].ToString()); // F?ge Plan_Nr der ObservableCollection hinzu
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler beim Abrufen der Daten: " + ex.Message);
+                }
             }
-
-            Debug.WriteLine("Trainingsnummern nach dem Füllen: " + string.Join(", ", viewModel.Trainingsnummern));
         }
 
 
@@ -195,18 +170,19 @@ namespace Healthmanagment.Training
         private async Task LetzteAsync()
         {
             string selectedUebung = txtUebung.Text;
-            string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
+            string ConString = "data source=DESKTOP-726MH0T;initial catalog=gesundheit;trusted_connection=true";
+            string CmdString = string.Empty;
 
             try
             {
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlConnection con = new SqlConnection(ConString))
                 {
                     await con.OpenAsync();
 
-                    string CmdString = "SELECT TOP 1 CAST(Wann AS DATE) AS Wann, Uebung, Satz, Wh, Gewicht " +
-                                        "FROM Muskel " +
-                                        "WHERE Krank = 0 AND Uebung LIKE '%' + @uebung + '%' " +
-                                        "ORDER BY Wann DESC;";
+                    CmdString = "SELECT TOP 1 CAST(Wann AS DATE) AS Wann, Uebung, Satz, Wh, Gewicht " +
+                                "FROM Muskel " +
+                                "WHERE Krank = 0 AND Uebung LIKE '%' + @uebung + '%' " +
+                                "ORDER BY Wann DESC;";
 
                     using (SqlCommand cmd = new SqlCommand(CmdString, con))
                     {
@@ -223,6 +199,7 @@ namespace Healthmanagment.Training
                             // Letzten Eintrag in Textboxen einf?gen (Gewicht & Wiederholungen)
                             if (dt.Rows.Count > 0)
                             {
+                                // **HIER DIE ?NDERUNG EINF?GEN**
                                 if (decimal.TryParse(dt.Rows[0]["Gewicht"].ToString().Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal letztesGewicht))
                                 {
                                     txtletztGewicht.Text = letztesGewicht.ToString("0.00", CultureInfo.InvariantCulture); // Speichere es im invarianten Format
@@ -260,10 +237,10 @@ namespace Healthmanagment.Training
                 string selectedGruppe = cmbGruppe.Text;
                 string selectedUebung = txtUebung.Text;
                 string selectedArt = cmbArt.Text;
-                string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
-                
 
-                    string query = @"
+                string connectionString = "data source=DESKTOP-726MH0T;initial catalog=gesundheit;trusted_connection=true";
+
+                string query = @"
                                      SELECT TOP 1 Wann, art, Uebung, Zielmuskel, Satz, Wh, Gewicht
                                      FROM Muskel 
                                      WHERE art = @art 
@@ -303,9 +280,8 @@ namespace Healthmanagment.Training
 
         private void Daten()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(connectionString)) ;
-             string query = "SELECT Uebung, Wann, Wh, Gewicht FROM Muskel WHERE Art = 'Arbeitssatz' AND Gewicht > 0 ORDER BY Uebung, Wann";
+            string connectionString = "data source=DESKTOP-726MH0T;initial catalog=gesundheit;trusted_connection=true";
+            string query = "SELECT Uebung, Wann, Wh, Gewicht FROM Muskel WHERE Art = 'Arbeitssatz' AND Gewicht > 0 ORDER BY Uebung, Wann";
 
             DataTable dataTable = new DataTable();
 
@@ -487,7 +463,11 @@ namespace Healthmanagment.Training
         }
 
 
-       
+        private void txtGewicht_TextChanged(object sender, TextChangedEventArgs e)
+        {           
+           
+           // ver();
+        }
 
         private async void txtUebung_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -505,13 +485,6 @@ namespace Healthmanagment.Training
         private void txtGewicht_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             ver(); // deine Methode
-        }
-
-      
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            FillComboBox();
         }
     }
 }
