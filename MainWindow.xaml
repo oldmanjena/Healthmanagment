@@ -25,10 +25,10 @@
           SnapsToDevicePixels="True">
 
             <MenuItem Header="Administration">
-                <MenuItem Header="Verwaltung">                   
-                    <MenuItem Header="Benutzer anlegen" Click="Benutzer_Click"/>
-                    <MenuItem Header="Morgens"/>
-                    <MenuItem Header="Abends"/>
+                <MenuItem Header="Verwaltung" SubmenuOpened="Verwaltung_SubmenuOpened">
+                    <MenuItem Header="Benutzer anlegen" Click="Benutzer_Click" x:Name="miBenutzer" Visibility="Collapsed"/>
+                    <MenuItem Header="Morgens" x:Name="miMorgens" Visibility="Collapsed"/>
+                    <MenuItem Header="Abends" x:Name="miAbends" Visibility="Collapsed"/>
                 </MenuItem>
                 <MenuItem Header="Versuche" Click="Versuche_Click" IsCheckable="True"/>
                 <MenuItem Header="_SUBMENU3" IsCheckable="True"/>

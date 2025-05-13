@@ -11,7 +11,7 @@ using Healthmanagment.Auswertungen;
 using Healthmanagment.Gewicht;
 using Healthmanagment.Versuche;
 using Healthmanagment.Administration;
-
+using System.Windows.Controls;
 
 
 namespace Healthmanagment;
@@ -135,6 +135,30 @@ public partial class MainWindow : Window
     {
         BenutzerAn benutzerAn = new BenutzerAn();
         benutzerAn.Show();
+    }
+
+
+    private bool istAngemeldet = false;
+
+    private void Verwaltung_SubmenuOpened(object sender, RoutedEventArgs e)
+    {
+        if (!istAngemeldet)
+        {
+            var loginWindow = new LoginWindow();
+            if (loginWindow.ShowDialog() == true && loginWindow.Angemeldet)
+            {
+                istAngemeldet = true;
+                miBenutzer.Visibility = Visibility.Visible;
+                miMorgens.Visibility = Visibility.Visible;
+                miAbends.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // Menü schließen, falls Login abgebrochen oder fehlgeschlagen
+                (sender as MenuItem)?.Items.Clear(); // Verhindert Anzeige leerer Liste
+                e.Handled = true;
+            }
+        }
     }
 }
 
