@@ -213,7 +213,7 @@ namespace Healthmanagment.ViewModel
         public Dictionary<string, List<string>> ZielDict { get; set; } = new()
         {
             { "Krank", new List<string> { "krank" } },
-            { "R?cken", new List<string> { "Latissimus", "Trapezius", "unterer R?cken" } },
+            { "Ruecken", new List<string> { "Latissimus", "Trapezius", "unterer R?cken" } },
             { "Beine", new List<string> { "Quadrizeps", "Harnstrings" } },
             { "Brust", new List<string> { "Obere Brust", "Mittlere Brust" } },
             { "Bizeps", new List<string> { "gesamter Bizeps" } },
@@ -221,7 +221,7 @@ namespace Healthmanagment.ViewModel
             { "Schulter", new List<string> { "vordere", "mittlere", "hintere" } },
             { "Bauch", new List<string> { "oberer", "gesamter", "unterer", "schr?ger" } },
             { "Unterarm", new List<string> { "gesamter" } },
-            { "Ganzk?rper", new List<string> { "gesamter" } }
+            { "Ganzkoerper", new List<string> { "gesamter" } }
         };
 
         // Nur die Keys als Liste (f?r ComboBox)

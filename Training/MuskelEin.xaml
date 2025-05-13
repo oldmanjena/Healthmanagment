@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Trainingstag:" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <DatePicker x:Name="dtpDatum" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Width="150" Height="42" SelectedDate="{Binding SelectedDate}"/>
+        <DatePicker x:Name="dtpDatum" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Width="150" Height="27" SelectedDate="{Binding SelectedDate}"/>
 
         <Label Content="Muskelgruppe:" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ComboBox x:Name="cmbGruppe"
