@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -10,9 +10,13 @@ using System.Windows;
 using System.Windows.Input;
 using Healthmanagment;
 using Healthmanagment.Klassen;
+using Healthmanagment.Converter;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Text.RegularExpressions;
 
 namespace Healthmanagment.ViewModel
 {
+
     public class TrainingsViewModel : ViewModelBase
     {
         public ObservableCollection<TrainingsEintrag> TrainingsDaten { get; set; }
@@ -21,20 +25,31 @@ namespace Healthmanagment.ViewModel
 
         
 
+
         public TrainingsViewModel()
         {
             TrainingsDaten = new ObservableCollection<TrainingsEintrag>();
             EintragenCommand = new RelayCommand(EintragHinzufuegen);
             Start = DateTime.Now.TimeOfDay;
             Debug.WriteLine($"Startzeit gesetzt auf: {Start}");
+            _ = LadePlaeneAsync();  // Das "_" bedeutet, dass wir nicht auf das Ergebnis warten, aber es wird trotzdem ausgeführt
+
+
         }
 
+        public async Task LadePlaeneAsync()
+        {
+            await LadePlaene();  // Hier rufst du die Methode weiterhin auf, aber sie muss eine Task zurückgeben.
+        }
+
+
+
         // Properties gebunden an UI
-        public DateTime Datum { get; set; } = DateTime.Now;
+        //  public DateTime Datum { get; set; } = DateTime.Now;
         public int KW { get; set; }
-        public DateTime Wochentag { get; set; } = DateTime.Now; // In DB als datetime? -> pr?fen!
+      // public DateTime Wochentag { get; set; } = DateTime.Now; // In DB als datetime? -> pr?fen!
       //  public TimeSpan? Start { get; set; } 
-        public TimeSpan? Dauer { get; set; }
+      //  public TimeSpan? Dauer { get; set; }
 
         public int RPM { get; set; }
       //  public double Entfernung { get; set; }
@@ -52,54 +67,78 @@ namespace Healthmanagment.ViewModel
 
         //public int effekt { get; set; }
 
+        private DateTime? _datum = DateTime.Today;
+        public DateTime? Datum
+        {
+            get => _datum;
+            set
+            {
+                if (_datum != value)
+                {
+                    _datum = value;
+                    KW = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(_datum ?? DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+                    OnPropertyChanged(nameof(Datum));
+                    OnPropertyChanged(nameof(Wochentag));
+                    OnPropertyChanged(nameof(KW));  // Stelle sicher, dass KW auch aktualisiert wird
+                }
+            }
+        }
+
+        public string Wochentag => Datum?.ToString("dddd", new CultureInfo("de-DE")) ?? string.Empty;
 
 
-      
+
+
 
         private void EintragHinzufuegen(object obj)
         {
             try
             {
-                //var dauer = (Ende - Start).TotalMinutes;
+                // Testcode zur Überprüfung der TimeSpan-Formatierung
+               //TimeSpan testTimeSpan = new TimeSpan(1, 8, 34);
+                //string testString = testTimeSpan.ToString("HH:mm:ss");
+                //Debug.WriteLine($"Test TimeSpan format: {testString}");
 
                 string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(
-                        "INSERT INTO Training(Datum, KW, Wochentag, Start, Dauer, RPM, Entfernung, kcal, Puls, Aerober, Anearober, Regenaration, VO2max, Plan_Nr, Kommentar, Per_id, effekt) " +
-                        "VALUES (@Datum, @KW, @Wochentag, @Start, @Dauer, @RPM, @Entfernung, @kcal, @Puls, @Aerober, @Anearober, @Rege, @VO2max, @Plan_Nr, @Kommentar, @perid, @effekt)", con))
+                        "INSERT INTO Training(Datum, KW, Wochentag, Start, Dauer, RPM, Entfernung, kcal, Puls, Aerober, Anearober, Regenaration, VO2max, Plan_Nr, Kommentar, effekt) " +
+                        "VALUES (@Datum, @KW, @Wochentag,CONVERT(time, @Start, 108), CONVERT(time, @Dauer, 108), @RPM, @Entfernung, @kcal, @Puls, @Aerober, @Anearober, @Regeneration, @VO2max, @Plan_Nr, @Kommentar, @effekt)", con))
                     {
-                        cmd.Parameters.AddWithValue("@Datum", Datum);
-                        cmd.Parameters.AddWithValue("@KW", KW);
-                        cmd.Parameters.AddWithValue("@Wochentag", Wochentag);
-                        cmd.Parameters.Add("@Start", SqlDbType.Time).Value = Start.HasValue ? (object)Start.Value : DBNull.Value;                        
-                        cmd.Parameters.Add("@Dauer", SqlDbType.Time).Value = Dauer.HasValue ? (object)Dauer.Value : DBNull.Value;
-                        cmd.Parameters.AddWithValue("@RPM", RPM);
-                        cmd.Parameters.AddWithValue("@Entfernung", Entfernung);
-                        cmd.Parameters.AddWithValue("@kcal", (object)Kcal ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@Puls", Puls);
-                        cmd.Parameters.AddWithValue("@Aerober", Aerober);
-                        cmd.Parameters.AddWithValue("@Anearober", Anaerober);
-                        cmd.Parameters.AddWithValue("@Rege", (object)Regeneration ?? DBNull.Value); // nullable decimal handling
-                        cmd.Parameters.AddWithValue("@VO2max", VO2max);
-                        cmd.Parameters.AddWithValue("@Plan_Nr", PlanNr);
-                        cmd.Parameters.AddWithValue("@Kommentar", Kommentar);
-                        cmd.Parameters.AddWithValue("@perid", "1"); // Fester Platzhalterwert
-                        cmd.Parameters.AddWithValue("@effekt", effekt); // TIMPR
+                        TimeSpanHHMMSSFormatter formatter = new TimeSpanHHMMSSFormatter();
+                        cmd.Parameters.Add("@Datum", SqlDbType.Date).Value = Datum.HasValue ? Datum.Value.Date : DBNull.Value;
+                        cmd.Parameters.Add("@KW", SqlDbType.Int).Value = KW;
+                        cmd.Parameters.Add("@Wochentag", SqlDbType.VarChar, 20).Value = Wochentag ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@Start", SqlDbType.Time).Value = new TimeSpan(20, 20, 41);  // Testwert
+                        cmd.Parameters.Add("@Dauer", SqlDbType.Time).Value = new TimeSpan(3, 0, 0);  // Testwert
 
-                        foreach (SqlParameter param in cmd.Parameters)
-                        {
-                            Debug.WriteLine($"{param.ParameterName} = {param.Value} ({param.Value?.GetType()})");
-                        }
-                       
+                        cmd.Parameters.Add("@RPM", SqlDbType.Int).Value = RPM;
+                        cmd.Parameters.Add("@Entfernung", SqlDbType.Decimal).Value = Entfernung;
+                        cmd.Parameters.Add("@kcal", SqlDbType.Decimal).Value = Kcal;
+                        cmd.Parameters.Add("@Puls", SqlDbType.Int).Value = Puls;
+                        cmd.Parameters.Add("@Aerober", SqlDbType.Float).Value = Aerober;
+                        cmd.Parameters.Add("@Anearober", SqlDbType.Float).Value = Anaerober;
+                        cmd.Parameters.Add("@Regeneration", SqlDbType.Decimal).Value = Regeneration;
+
+                        cmd.Parameters.Add("@VO2max", SqlDbType.Int).Value = VO2max;
+                        cmd.Parameters.Add("@Plan_Nr", SqlDbType.Int).Value = PlanNr;
+                        cmd.Parameters.Add("@Kommentar", SqlDbType.VarChar, 200).Value = Kommentar ?? (object)DBNull.Value;
+                          
+                        cmd.Parameters.Add("@effekt", SqlDbType.Float).Value = effekt;
+
+
+                        foreach (SqlParameter p in cmd.Parameters)
+                            Debug.WriteLine($"{p.ParameterName} = {p.Value} ({p.Value?.GetType()})");
+
                         cmd.ExecuteNonQuery();
                     }
                 }
 
                 TrainingsDaten.Add(new TrainingsEintrag
                 {
-                    Datum = Datum,
+                    Datum = Datum ?? DateTime.MinValue,
                     KW = KW,
                     Wochentag = Wochentag,
                     Start = Start,
@@ -143,29 +182,33 @@ namespace Healthmanagment.ViewModel
             }
         }
 
-        private string _dauerString;
-        public string DauerString
+        private DateTime? _dauerZeit;
+        public DateTime? DauerZeit
         {
-            get => _dauerString;
+            get => _dauerZeit;
             set
             {
-                _dauerString = value;
-                OnPropertyChanged(nameof(DauerString));
+                _dauerZeit = value;
+                OnPropertyChanged(nameof(DauerZeit));
 
-                if (TimeSpan.TryParseExact(value, "hh\\:mm", CultureInfo.InvariantCulture, out TimeSpan result))
-                {
-                    Dauer = result;
-                    Debug.WriteLine($"Dauer gesetzt (TryParseExact): {Dauer?.ToString() ?? "NULL"}"); // F?ge diese Debug-Ausgabe hinzu
-                }
-                else
-                {
-                    Dauer = null;
-                    Debug.WriteLine($"Dauer auf NULL gesetzt (TryParseExact fehlgeschlagen): {value}"); // F?ge diese Debug-Ausgabe hinzu
-                }
-
-                Debug.WriteLine($"Dauer gesetzt (Property): {Dauer?.ToString() ?? "NULL"}"); // F?ge diese Debug-Ausgabe hinzu
+                // Konvertiere zu TimeSpan?
+                Dauer = value?.TimeOfDay;
+                Debug.WriteLine($"[DEBUG] Dauer berechnet aus DauerZeit: {Dauer?.ToString() ?? "NULL"}");
             }
         }
+
+        private TimeSpan? _dauer;
+        public TimeSpan? Dauer
+        {
+            get => _dauer;
+            set
+            {
+                _dauer = value;
+                OnPropertyChanged(nameof(Dauer));
+            }
+        }
+
+
 
         private TimeSpan? _start;
         public TimeSpan? Start
@@ -177,7 +220,21 @@ namespace Healthmanagment.ViewModel
                 {
                     _start = value;
                     OnPropertyChanged(nameof(Start));
-                    Debug.WriteLine($"Start wurde auf {Start} gesetzt.");
+                    Debug.WriteLine($"Start wurde auf {_start} gesetzt.");
+                    // KW berechnen
+                    if (_start.HasValue)
+                    {
+                        var dateTime = DateTime.Today + _start.Value;
+                        KW = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(
+                            dateTime,
+                            CalendarWeekRule.FirstFourDayWeek,
+                            DayOfWeek.Monday
+                        );
+                    }
+                    else
+                    {
+                        KW = 0;
+                    }
                 }
             }
         }
@@ -263,7 +320,7 @@ namespace Healthmanagment.ViewModel
 
         public ObservableCollection<string> PlanNrList { get; set; } = new();
 
-        public async void LadePlaene()
+        public async Task LadePlaene()
         {
             string connectionString = "data source=DESKTOP-726MH0T;initial catalog=managment;trusted_connection=true";
 

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data.SqlClient;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -402,8 +403,8 @@ namespace Healthmanagment.ViewModel
 
 
         // Die Bindings f?r die ComboBoxen
-        public List<string> Arten { get; } = new() { "Definition", "Masseaufbau", "Di?t", "Normal" };
-        public List<string> Techniken { get; } = new() { "Aufw?rmen", "Arbeitssatz", "Cool Down" };
+        public List<string> Arten { get; } = new() { "Definition", "Masseaufbau", "Diaet", "Normal" };
+        public List<string> Techniken { get; } = new() { "Aufwaermen", "Arbeitssatz", "Cool Down" };
 
 
 

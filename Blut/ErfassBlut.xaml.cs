@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,11 +54,11 @@ namespace Healthmanagment.Blut
                 !int.TryParse(txtDia.Text, out int dia) ||
                 !int.TryParse(txtPuls.Text, out int puls))
             {
-                MessageBox.Show("Bitte g?ltige Werte f?r Blutdruck und Puls eingeben.");
+                MessageBox.Show("Bitte gültige Werte fuer Blutdruck und Puls eingeben.");
                 return;
             }
 
-            string connectionString = ConfigurationManager.ConnectionStrings["gesundheit"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -91,7 +91,7 @@ namespace Healthmanagment.Blut
 
         private void LoadDataGrid()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["gesundheit"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["managment"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -122,7 +122,7 @@ namespace Healthmanagment.Blut
             }
             else
             {
-                txtTageszeit.Text = "Ung?ltige Zeit"; // Fehlerbehandlung
+                txtTageszeit.Text = "Ungueltige Zeit"; // Fehlerbehandlung
             }
         }
 
@@ -324,6 +324,18 @@ namespace Healthmanagment.Blut
             else
             {
                 txtBemerkung.Text = "Vorhofflimmern";
+            }
+        }
+
+        private void txtZeit_TextChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (DateTime.TryParse(txtZeit.Text, out DateTime zeit)) // ?berpr?fung auf g?ltige Zeit
+            {
+                txtTageszeit.Text = BerechneTageszeit(zeit);
+            }
+            else
+            {
+                txtTageszeit.Text = "Ung?ltige Zeit"; // Fehlerbehandlung
             }
         }
     }

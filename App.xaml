@@ -48,6 +48,12 @@
 
             </Style>
 
+            <Style TargetType="xctk:MultiLineTextEditor">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="5"/>
+                
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -27,21 +27,14 @@ namespace Healthmanagment.Training
     {
         public TrainingEin()
         {
-            var combinedVM = new CombinedViewModel();
-
-            // ?? Verbindung zwischen TimePickerVM und TrainingsVM herstellen
-            combinedVM.TimePickerVM.TrainingsVM = combinedVM.TrainingsVM;
-
-            // ?? ViewModel an View binden
-            DataContext = combinedVM;
+           
 
             InitializeComponent();
-           // DataContext = new CombinedViewModel();
-           
-            //UpdateKalenderwoche(DateTime.Today);
+            DataContext = new TrainingsViewModel();
 
+            // Falls du den Converter brauchst
             var timeSpanConverter = new TimeSpanToStringConverter();
-            Resources.Add("TimeSpanToStringConverter", timeSpanConverter);        
+            Resources.Add("TimeSpanToStringConverter", timeSpanConverter);
 
 
 
@@ -98,7 +91,7 @@ namespace Healthmanagment.Training
             int kw = cal.GetWeekOfYear(datum, rule, firstDay);
             txtKw.Text = $"KW {kw}";
         }
-       
+
 
         private void txtEntfernung_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -124,13 +117,13 @@ namespace Healthmanagment.Training
             }
         }
 
-     
 
-      
+
+
 
         private void txtEffekt_LostFocus(object sender, RoutedEventArgs e)
         {
-           // MessageBox.Show("Lost Focus Event wurde ausgelöst!");
+            // MessageBox.Show("Lost Focus Event wurde ausgelöst!");
         }
 
         private void TestPopupButton_Click(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@ namespace Healthmanagment.Klassen
     {
         public DateTime Datum { get; set; }
         public int KW { get; set; }
-        public DateTime Wochentag { get; set; }
+        public string Wochentag { get; set; }
         public TimeSpan? Start { get; set; }
         public TimeSpan? Dauer { get; set; }
         public int RPM { get; set; }

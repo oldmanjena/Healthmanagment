@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:Healthmanagment.ViewModel" 
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MuskelEin" Height="800" Width="1300">
+        Title="MuskelEin" Height="800" Width="1300" Loaded="Window_Loaded">
 
     <Window.Resources>
         <conv:MaskedTextToDecimalConverter x:Key="MaskedTextToDecimalConverter" />
@@ -17,7 +17,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
-    <Grid Cursor="">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -41,10 +41,10 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Trainingstag:" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Trainingstag:" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <DatePicker x:Name="dtpDatum" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Width="150" Height="42" SelectedDate="{Binding SelectedDate}"/>
 
-        <Label Content="Muskelgruppe:" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Muskelgruppe:" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ComboBox x:Name="cmbGruppe"
                   ItemsSource="{Binding Gruppen}"
                   SelectedItem="{Binding Muskelgruppe}"                  
@@ -61,7 +61,7 @@
         <Label Content="Letzte WH Anzahl:" Grid.Row="5" Grid.Column="3" Margin="0,10,373,11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="txtLetztWh" Grid.Row="5" Grid.Column="3" Margin="129,15,239,10" Height="NaN"/>
 
-        <Label Content="Zielmuskel:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Zielmuskel:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ComboBox x:Name="cmbZiel"
                   ItemsSource="{Binding Ziele}"
                   SelectedItem="{Binding Zielmuskel}"
@@ -78,7 +78,7 @@
                  RenderTransformOrigin="-3.96,2.9"
                  SelectionOpacity="100"/>
 
-        <Label Content="Uebung:" Grid.Row="3" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Uebung:" Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="txtUebung" Grid.Row="3"
                  Text="{Binding Uebung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Grid.Column="1" Margin="12,13,12,13" Width="150"
@@ -87,7 +87,7 @@
         <Label Content="Technik:" Grid.Row="3" Grid.Column="2" Margin="147,5,29,18"/>
         <ComboBox x:Name="cmbTechnik" Grid.Row="3" Grid.Column="3" Margin="10,8,345,18" Width="NaN"/>
 
-        <Label Content="Satz:" Grid.Row="4" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Satz:" Grid.Row="4" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <xctk:IntegerUpDown  x:Name="txtSatz" Grid.Row="4" Grid.Column="1"                
                  Value="{Binding Satz, Mode=TwoWay}"                      
                   Minimum="0" Maximum="100" 
@@ -101,7 +101,7 @@
                  Width="75"/>
 
 
-        <Label Content="Wiederholungen:" Grid.Row="5" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Wiederholungen:" Grid.Row="5" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <xctk:IntegerUpDown  x:Name="txtWh" Grid.Row="5" Grid.Column="1"
           Foreground="Black" Background="White"
@@ -113,7 +113,7 @@
 
         <Label Content="Prozentuale Gewicht:" Grid.Row="4" Grid.Column="3" Margin="157,0,206,34" Height="25"/>
 
-        <Label Content="Trainingsgewicht:" Grid.Row="6" Grid.Column="0" Margin="5,5,5,5"/>
+        <Label Content="Trainingsgewicht:" Grid.Row="6" Grid.Column="0" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <xctk:DoubleUpDown x:Name="txtGewicht" Grid.Row="6"
           Value="{Binding Gewicht, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MaskedTextToDecimalConverter}}"
 		  Minimum="0" Maximum="100" Increment="2.5"

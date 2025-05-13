@@ -7,8 +7,8 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"        
         xmlns:local="clr-namespace:Healthmanagment.Versuche"
         mc:Ignorable="d"
-        Title="VersucheControl" Height="450" Width="800"
-        Background="LightBlue">
+        Title="VersucheControl" Height="450" Width="800">
+
 
     <Grid>
         <xctk:TimePicker x:Name="textBox"
