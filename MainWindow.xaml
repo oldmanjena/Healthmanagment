@@ -25,11 +25,8 @@
           SnapsToDevicePixels="True">
 
             <MenuItem Header="Administration">
-                <MenuItem Header="Blutdruck">
-                    <MenuItem.Icon>
-                        <Image Source="pack://application:,,,/icons/gesund.png" Width="16" Height="16"/>
-                    </MenuItem.Icon>
-                    <MenuItem Header="Messwerte Blutdruck"/>
+                <MenuItem Header="Verwaltung">                   
+                    <MenuItem Header="Benutzer anlegen" Click="Benutzer_Click"/>
                     <MenuItem Header="Morgens"/>
                     <MenuItem Header="Abends"/>
                 </MenuItem>

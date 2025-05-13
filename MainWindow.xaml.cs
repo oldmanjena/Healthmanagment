@@ -10,6 +10,7 @@ using System.Windows;
 using Healthmanagment.Auswertungen;
 using Healthmanagment.Gewicht;
 using Healthmanagment.Versuche;
+using Healthmanagment.Administration;
 
 
 
@@ -128,6 +129,12 @@ public partial class MainWindow : Window
     {
         VersucheControl versuche = new VersucheControl();
         versuche.Show();
+    }
+
+    private void Benutzer_Click(object sender, RoutedEventArgs e)
+    {
+        BenutzerAn benutzerAn = new BenutzerAn();
+        benutzerAn.Show();
     }
 }
 

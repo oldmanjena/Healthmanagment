@@ -23,9 +23,32 @@
         <TextBlock x:Name="textBlock1" Margin="28,115,0,0" TextWrapping="Wrap" Text="ValueUpDown" VerticalAlignment="Top"/>
         <xctk:ValueRangeTextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="28,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <xctk:DateTimeUpDown Format="Custom" FormatString="hh:mm tt" Value="13:30" Width="100" Margin="269,52,431,315" />
-        <xctk:Calculator  Width="300" Margin="400,57,100,62"/>
-           
-        </Grid>
+        <StackPanel x:Name="stackPanel" Margin="28,200,0,0">
+            <xctk:WindowContainer>
+                <xctk:ChildWindow WindowBackground="Blue"
+                    Left="75"
+                    Top="50"
+                    Width="275"
+                    Height="125"
+                    WindowState="Open">
+                    <TextBlock Text="This is a Child Window" Padding="10"/>
+                </xctk:ChildWindow>
+
+                <xctk:ChildWindow WindowBackground="Green"
+                    Left="175"
+                    Top="125"
+                    Width="275"
+                    Height="125"
+                    WindowState="Open">
+                    <TextBlock Text="This is another Child Window" Padding="10"/>
+                </xctk:ChildWindow>
+
+                <xctk:MessageBox Caption="MessageBox"
+                   Text="This is a MessageBox"/>
+            </xctk:WindowContainer>
+        </StackPanel>   
+
+    </Grid>
    
 </Window>
 
