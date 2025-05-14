@@ -395,7 +395,7 @@ namespace Healthmanagment.ViewModel
                 using SqlConnection con = new(connectionString);
                 con.Open();
 
-                using SqlCommand cmd = new("INSERT INTO Muskel(wann, Muskelgruppe, Uebung, Zielmuskel, Satz, Wh, gewicht, veraenderung, art, krank, Technik, Trainnr) " +
+                using SqlCommand cmd = new("INSERT INTO Muskel(Wann, Muskelgruppe, Uebung, Zielmuskel, Satz, Wh, gewicht, veraenderung, art, krank, Technik, Trainnr) " +
                                             "VALUES (@wann, @Muskelgruppe, @Uebung, @Zielmuskel, @Satz, @Wh, @gewicht, @veraenderung, @art, @krank, @Technik, @Trainnr)", con);
                 cmd.Parameters.AddWithValue("@wann", SelectedDate); // Verwende SelectedDate
                 cmd.Parameters.AddWithValue("@Muskelgruppe", AusgewaehlteMuskelgruppe); // Verwende AusgewaehlteMuskelgruppe

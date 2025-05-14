@@ -46,7 +46,8 @@
 
         <Label Content="Muskelgruppe:" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5"/>
         <ComboBox x:Name="cmbGruppe"
-                  ItemsSource="{Binding Gruppen}"                                  
+                  ItemsSource="{Binding Gruppen}"   
+                  SelectedItem="{Binding AusgewaehlteMuskelgruppe, Mode=TwoWay}"
                   Grid.Row="1" Grid.Column="1" Margin="12,12,32,12"
                   Width="NaN" Height="NaN" SelectionChanged="cmbGruppe_SelectionChanged" />
 
@@ -62,7 +63,8 @@
 
         <Label Content="Zielmuskel:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,5"/>
         <ComboBox x:Name="cmbZiel"
-                  ItemsSource="{Binding ZieleListe}"                                    
+                  ItemsSource="{Binding ZieleListe}"      
+                  SelectedItem="{Binding SelectedZielmuskel, Mode=TwoWay}"
                   Grid.Row="2" Grid.Column="1"
                   Margin="12,12,36,12" Width="152" Height="NaN"/>
         <Label Content="Trainingsart:" Grid.Row="2" Grid.Column="2" Margin="147,12,5,17" Height="25"/>

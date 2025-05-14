@@ -51,7 +51,7 @@ namespace Healthmanagment.ViewModel
             }
             ExportierePdfCommand = new RelayCommand(ExportiereWochenplanAlsPdf);
 
-            LadeMuskelgruppen();
+            LadeWochenDaten();
         }
 
         private void LadeMuskelgruppen()
