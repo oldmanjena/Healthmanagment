@@ -161,6 +161,12 @@ public partial class MainWindow : Window
             }
         }
     }
+
+    private void Verwalt_Click(object sender, RoutedEventArgs e)
+    {
+        Verwaltung verwaltung = new Verwaltung();
+        verwaltung.Show();
+    }
 }
 
 
