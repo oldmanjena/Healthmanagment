@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Healthmanagment.ViewModel"
         mc:Ignorable="d"
-        Title="Pruefung" Height="600" Width="800">
+        Title="Pruefung" Height="600" Width="800"
+        Background="{StaticResource LightBlueBrush}">
     <Window.DataContext>
         <local:PruefungViewModel/>
     </Window.DataContext>
