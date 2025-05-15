@@ -78,6 +78,8 @@
                 <MenuItem Header="Copy"/>
                 <MenuItem Header="Paste"/>
             </MenuItem>
+            <MenuItem Header="Beenden" Click="Beenden_Click">
+            </MenuItem>         
         </Menu>
     </StackPanel>
 

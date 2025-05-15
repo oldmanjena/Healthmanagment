@@ -167,6 +167,11 @@ public partial class MainWindow : Window
         Verwaltung verwaltung = new Verwaltung();
         verwaltung.Show();
     }
+
+    private void Beenden_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
 }
 
 
